@@ -1,2 +1,2 @@
 export {environment} from './environment';
-export {Ng2EmployeeEssentialsAppComponent} from './ng2-employee-essentials.component';
+export {EmployeeEssentialsAppComponent} from './employee/employee.component';

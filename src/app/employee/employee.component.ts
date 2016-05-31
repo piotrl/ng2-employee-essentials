@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Employee} from "./Employee";
+import {EmployeeDetailComponent} from './detail/employee-detail.component'
 
 const EMPLOYEES:Employee[] = [
     {"id": 11, "name": "Mr. Nice"},
@@ -18,7 +19,8 @@ const EMPLOYEES:Employee[] = [
     moduleId: module.id,
     selector: 'employee-essentials-app',
     templateUrl: 'employee.component.html',
-    styleUrls: ['employee.component.css']
+    styleUrls: ['employee.component.css'],
+    directives: [EmployeeDetailComponent]
 })
 export class EmployeeEssentialsAppComponent {
     title = 'ng2-employee-essentials works!';

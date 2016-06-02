@@ -1,13 +1,20 @@
-<h1>{{ title }}</h1>
-
 <h2>Our employees</h2>
 <ul class="employees">
-    <li *ngFor="let employee of employees" 
-        (click)="onSelect(employee)"
-        [class.selected]="employee === selectedEmployee"
-    >
-        <span class="badge">{{employee.id}}</span> {{employee.name}}
+    <li *ngFor="let employee of employees" (click)="onSelect(employee)" [class.selected]="employee === selectedHero">
+    <span class="employee-element">
+      <span class="badge">{{employee.id}}</span> {{employee.name}}
+    </span>
+        <button class="delete-button" (click)="delete(employee, $event)">Delete</button>
     </li>
 </ul>
 
-<employee-detail [employee]="selectedEmployee"></employee-detail>
+<button (click)="addHero()">Add New employee</button>
+<div *ngIf="addingHero">
+    <my-employee-detail (close)="close($event)"></my-employee-detail>
+</div>
+<div *ngIf="selectedHero">
+    <h2>
+        {{selectedHero.name | uppercase}} is my employee
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>

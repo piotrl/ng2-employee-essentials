@@ -3,8 +3,6 @@ import {EmployeeService} from '../employee/employee.service'
 import {Employee} from '../employee/Employee'
 import {Router} from "@angular/router";
 
-
-
 @Component({
     selector: 'my-dashboard',
     styleUrls: ['app/dashboard/dashboard.component.css'],

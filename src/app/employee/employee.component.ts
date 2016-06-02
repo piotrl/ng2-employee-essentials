@@ -1,32 +1,32 @@
 import {Component} from '@angular/core';
+import { OnInit } from '@angular/core';
 import {Employee} from "./Employee";
+import {EmployeeService} from "./employee.service";
 import {EmployeeDetailComponent} from './detail/employee-detail.component'
 
-const EMPLOYEES:Employee[] = [
-    {"id": 11, "name": "Mr. Nice"},
-    {"id": 12, "name": "Narco"},
-    {"id": 13, "name": "Bombasto"},
-    {"id": 14, "name": "Celeritas"},
-    {"id": 15, "name": "Magneta"},
-    {"id": 16, "name": "RubberMan"},
-    {"id": 17, "name": "Dynama"},
-    {"id": 18, "name": "Dr IQ"},
-    {"id": 19, "name": "Magma"},
-    {"id": 20, "name": "Tornado"}
-];
 
 @Component({
-    moduleId: module.id,
     selector: 'employee-essentials-app',
-    templateUrl: 'employee.component.html',
-    styleUrls: ['employee.component.css'],
-    directives: [EmployeeDetailComponent]
+    templateUrl: 'app/employee/employee.component.html',
+    styleUrls: ['app/employee/employee.component.css'],
+    directives: [EmployeeDetailComponent],
+    providers: [EmployeeService]
 })
-export class EmployeeEssentialsAppComponent {
-    title = 'ng2-employee-essentials works!';
+export class EmployeeEssentialsAppComponent implements OnInit {
 
-    employees = EMPLOYEES;
+    title = 'ng2-employee-essentials works!';
+    employees:Employee[];
     selectedEmployee:Employee;
+
+    constructor(private employeeService:EmployeeService) {
+    }
+
+    ngOnInit() {
+        this.employeeService.getEmployees()
+            .then((employees) => {
+                this.employees = employees;
+            });
+    }
 
     onSelect(employee:Employee) {
         this.selectedEmployee = employee;

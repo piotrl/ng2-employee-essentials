@@ -1,20 +1,16 @@
 import {Component} from '@angular/core';
-import { OnInit } from '@angular/core';
+import {OnInit} from '@angular/core';
 import {Employee} from "./Employee";
 import {EmployeeService} from "./employee.service";
 import {EmployeeDetailComponent} from './detail/employee-detail.component'
 
-
 @Component({
-    selector: 'employee-essentials-app',
+    selector: 'employees-list',
     templateUrl: 'app/employee/employee.component.html',
     styleUrls: ['app/employee/employee.component.css'],
-    directives: [EmployeeDetailComponent],
-    providers: [EmployeeService]
+    directives: [EmployeeDetailComponent]
 })
-export class EmployeeEssentialsAppComponent implements OnInit {
-
-    title = 'ng2-employee-essentials works!';
+export class EmployeesComponent implements OnInit {
     employees:Employee[];
     selectedEmployee:Employee;
 

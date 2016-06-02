@@ -25,10 +25,12 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'angular2-in-memory-web-api',
 
   // App specific barrels.
   'app',
   'app/shared',
+  'app/data',
   /** @cli-barrel */
 ];
 
@@ -45,6 +47,7 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages

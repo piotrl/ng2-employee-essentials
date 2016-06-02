@@ -1,9 +1,29 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EmployeeService} from '../employee/employee.service'
+import {Employee} from '../employee/Employee'
+import {Router} from "@angular/router";
+
+
 
 @Component({
     selector: 'my-dashboard',
-    template: '<h3>My Dashboard</h3>'
+    styleUrls: ['app/dashboard/dashboard.component.css'],
+    templateUrl: 'app/dashboard/dashboard.component.html'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+    topEmployees:Employee[];
+
+    constructor(private employeeService:EmployeeService,
+                private router: Router) {
+    }
+
+    ngOnInit() {
+        this.employeeService.getEmployees()
+            .then(employees => this.topEmployees = employees.slice(1, 5));
+    }
+
+    gotoDetail(employee: Employee) {
+        this.router.navigateByUrl( `/employee/${employee.id}`);
+    }
 
 }

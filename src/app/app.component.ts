@@ -3,11 +3,13 @@ import {Router, Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "@angular/rout
 
 import {EmployeeService} from "./employee/employee.service";
 import {EmployeesComponent} from "./employee/employee.component";
+import {EmployeeDetailComponent} from "./employee/detail/employee-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
 @Routes([
     {path: '/', component: DashboardComponent},
-    {path: '/employees', component: EmployeesComponent}
+    {path: '/employees', component: EmployeesComponent},
+    {path: '/employee/:id', component: EmployeeDetailComponent}
 ])
 @Component({
     selector: 'my-app',

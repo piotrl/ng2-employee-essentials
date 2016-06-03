@@ -9,12 +9,29 @@ import {EmployeeService} from "../employee.service";
     styleUrls: ['app/employee/detail/employee-detail.component.css'],
     template: `
         <div *ngIf="employee">
-            <h2>{{ employee.name }} details!</h2>
-            <div><label>id: </label>{{employee.id}}</div>
+
+            <form #employeForm="ngForm">
+            <h2 *ngIf="employee.name">{{ employee.name }} details!</h2>
+            <div *ngIf="employee.id"><label>id: </label>{{employee.id}}</div>
             <div>
                 <label>name: </label>
-                <input [(ngModel)]="employee.name" placeholder="name">
+                <input [(ngModel)]="employee.name" placeholder="name" ngControl="name" #name="ngForm" required minlength="3">
             </div>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                Name has to be at least 3 characters
+            </div>
+            <div>
+                <label>age: </label>
+                <input [(ngModel)]="employee.age" type="number" placeholder="age" ngControl="age" #age="ngForm" required min="18">
+            </div>
+            <div [hidden]="age.valid || age.pristine" class="alert alert-danger">
+                Our employees has to be at least 18 
+            </div>
+
+            <button (click)="goBack()">Back</button>
+            <button (click)="save()" [disabled]="!employeForm.form.valid">Save</button>
+            </form>
+
         </div>
     `
 })
@@ -23,21 +40,20 @@ export class EmployeeDetailComponent implements OnActivate {
     @Output() close = new EventEmitter();
 
     employee:Employee;
-    error: any;
-    navigated = false; // true if navigated here
+    error:any;
 
     constructor(private employeeService:EmployeeService) {
     }
 
     routerOnActivate(curr:RouteSegment):void {
-        if (curr.getParam('id') !== null) {
+        if (+curr.getParam('id') !== 0) {
             let id = +curr.getParam('id');
-            this.navigated = true;
             this.employeeService.getEmployee(id)
                 .then(employee => this.employee = employee);
         } else {
-            this.navigated = false;
             this.employee = new Employee();
+            this.employee.name = '';
+            this.employee.age = 0;
         }
     }
 
@@ -48,14 +64,12 @@ export class EmployeeDetailComponent implements OnActivate {
                 this.employee = employee; // saved hero, w/ id if new
                 this.goBack(employee);
             });
-            // .catch(error => this.error = error); // TODO: Display error message
+        // .catch(error => this.error = error); // TODO: Display error message
     }
 
     goBack(savedEmployee:Employee = null) {
         this.close.emit(savedEmployee);
-        if (this.navigated) {
-            window.history.back();
-        }
+        window.history.back();
     }
 
 }

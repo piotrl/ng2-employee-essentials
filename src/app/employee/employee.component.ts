@@ -35,6 +35,7 @@ export class EmployeesComponent implements OnInit {
     addEmployee() {
         this.addingEmployee = true;
         this.selectedEmployee = null;
+        this.router.navigateByUrl( `/employee/0`);
     }
 
     close(savedEmployee:Employee) {

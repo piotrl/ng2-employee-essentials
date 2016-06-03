@@ -11,9 +11,6 @@
 </ul>
 
 <button (click)="addEmployee()">Add New employee</button>
-<div *ngIf="addingEmployee">
-    <my-employee-detail (close)="close($event)"></my-employee-detail>
-</div>
 <div *ngIf="selectedEmployee">
     <h2>
         {{selectedEmployee.name | uppercase}} is my employee

@@ -1,6 +1,8 @@
 <h2>Our employees</h2>
+<input type="text" [ngFormControl]="term"/>
+
 <ul class="employees">
-    <li *ngFor="let employee of employees" (click)="onSelect(employee)" [class.selected]="employee === selectedHero">
+    <li *ngFor="let employee of employees$ | async" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
     <span class="employee-element">
       <span class="badge">{{employee.id}}</span> {{employee.name}}
     </span>
@@ -8,13 +10,13 @@
     </li>
 </ul>
 
-<button (click)="addHero()">Add New employee</button>
-<div *ngIf="addingHero">
+<button (click)="addEmployee()">Add New employee</button>
+<div *ngIf="addingEmployee">
     <my-employee-detail (close)="close($event)"></my-employee-detail>
 </div>
-<div *ngIf="selectedHero">
+<div *ngIf="selectedEmployee">
     <h2>
-        {{selectedHero.name | uppercase}} is my employee
+        {{selectedEmployee.name | uppercase}} is my employee
     </h2>
-    <button (click)="gotoDetail()">View Details</button>
+    <button (click)="gotoDetail(selectedEmployee)">View Details</button>
 </div>

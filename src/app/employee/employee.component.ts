@@ -1,8 +1,12 @@
-import {Component} from '@angular/core';
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {Control} from "@angular/common";
+import {Observable} from "rxjs/Observable";
+import {Router} from "@angular/router";
 import {Employee} from "./Employee";
 import {EmployeeService} from "./employee.service";
-import {EmployeeDetailComponent} from './detail/employee-detail.component'
+import {EmployeeDetailComponent} from "./detail/employee-detail.component";
+import "rxjs/Rx";
+import "rxjs/add/operator/share";
 
 @Component({
     selector: 'employees-list',
@@ -11,15 +15,24 @@ import {EmployeeDetailComponent} from './detail/employee-detail.component'
     directives: [EmployeeDetailComponent]
 })
 export class EmployeesComponent implements OnInit {
-    employees:Employee[];
+    term = new Control();
+    employees$:Observable<Employee[]>;
     selectedEmployee:Employee;
     addingEmployee = false;
     error:any;
 
-    constructor(private employeeService:EmployeeService) {
+    constructor(private employeeService:EmployeeService,
+                private router: Router) {
     }
 
-    addHero() {
+    ngOnInit() {
+        this.employees$ = this.term.valueChanges
+            .debounceTime(400)
+            .distinctUntilChanged()
+            .switchMap(term => this.employeeService.search(term));
+    }
+
+    addEmployee() {
         this.addingEmployee = true;
         this.selectedEmployee = null;
     }
@@ -30,11 +43,10 @@ export class EmployeesComponent implements OnInit {
             this.getEmployees();
         }
     }
+
     getEmployees() {
-        this.employeeService
-            .getEmployees()
-            .then(employees => this.employees = employees)
-            .catch(error => this.error = error); // TODO: Display error message
+        this.employees$ = this.employeeService
+            .getEmployees();
     }
 
     delete(employee:Employee, event:any) {
@@ -42,7 +54,7 @@ export class EmployeesComponent implements OnInit {
         this.employeeService
             .delete(employee)
             .then(res => {
-                this.employees = this.employees.filter(h => h !== employee);
+                this.getEmployees();
                 if (this.selectedEmployee === employee) {
                     this.selectedEmployee = null;
                 }
@@ -50,16 +62,12 @@ export class EmployeesComponent implements OnInit {
             .catch(error => this.error = error); // TODO: Display error message
     }
 
-
-    ngOnInit() {
-        this.employeeService.getEmployees()
-            .then((employees) => {
-                this.employees = employees;
-            });
-    }
-
     onSelect(employee:Employee) {
         this.selectedEmployee = employee;
         this.addingEmployee = false;
+    }
+
+    gotoDetail(employee: Employee) {
+        this.router.navigateByUrl( `/employee/${employee.id}`);
     }
 }

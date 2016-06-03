@@ -1,6 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Headers, Http} from "@angular/http";
+import {Observable} from "rxjs/Observable";
+import 'rxjs/Rx';
 import "rxjs/add/operator/toPromise";
+
 import {Employee} from "./Employee";
 
 
@@ -11,17 +14,24 @@ export class EmployeeService {
     constructor(private http:Http) {
     }
 
-
-    getEmployees() {
-        return this.http.get(this.URL)
-            .toPromise()
-            .then(response => response.json().data)
-            .catch(this.handleError);
-
+    search(term: string) {
+        let employees = this.getEmployees();
+        if (!term) {
+            return employees;
+        }
+        return employees
+            .map(employees => employees.filter(e => e.name.startsWith(term)));
     }
 
-    getEmployee(id:number) {
-        return this.getEmployees().then(
+    getEmployees():Observable<Employee[]> {
+        return this.http.get(this.URL)
+            .map((res) => res.json().data);
+    }
+
+    getEmployee(id:number):Promise<Employee> {
+        return this.getEmployees()
+            .toPromise()
+            .then(
             employee => employee.filter(employee => employee.id === id)[0]
         );
     }

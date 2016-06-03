@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.employeeService.getEmployees()
+            .toPromise()
             .then(employees => this.topEmployees = employees.slice(1, 5));
     }
 

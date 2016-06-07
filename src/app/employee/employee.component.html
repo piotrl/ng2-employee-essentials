@@ -1,14 +1,32 @@
 <h2>Our employees</h2>
 <input type="text" [ngFormControl]="term"/>
 
-<ul class="employees">
-    <li *ngFor="let employee of employees$ | async" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
-    <span class="employee-element">
-      <span class="badge">{{employee.id}}</span> {{employee.name}}
-    </span>
-        <button class="delete-button" (click)="delete(employee, $event)">Delete</button>
-    </li>
-</ul>
+<div>
+<md-data-table layout-fill>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th class="md-text-cell">Name</th>
+        <th class="md-text-cell">Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees$ | async">
+        <td>{{ employee.id }}</td>
+        <td class="md-text-cell">{{ employee.name }}</td>
+        <td class="md-text-cell">{{ employee.age }}</td>
+    </tr>
+    </tbody>
+</md-data-table>
+</div>
+<!--<ul class="employees">-->
+    <!--<li *ngFor="let employee of employees$ | async" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">-->
+    <!--<span class="employee-element">-->
+      <!--<span class="badge">{{employee.id}}</span> {{employee.name}}-->
+    <!--</span>-->
+        <!--<button class="delete-button" (click)="delete(employee, $event)">Delete</button>-->
+    <!--</li>-->
+<!--</ul>-->
 
 <button (click)="addEmployee()">Add New employee</button>
 <div *ngIf="selectedEmployee">

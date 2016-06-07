@@ -14,7 +14,7 @@ export class EmployeeService {
     constructor(private http:Http) {
     }
 
-    search(term: string) {
+    search(term:string) {
         let employees = this.getEmployees();
         if (!term) {
             return employees;
@@ -32,8 +32,8 @@ export class EmployeeService {
         return this.getEmployees()
             .toPromise()
             .then(
-            employee => employee.filter(employee => employee.id === id)[0]
-        );
+                employee => employee.filter(employee => employee.id === id)[0]
+            );
     }
 
     save(employee:Employee):Promise<Employee> {

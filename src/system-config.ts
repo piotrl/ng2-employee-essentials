@@ -19,7 +19,9 @@ const materialPkgs: string[] = [
   'card',
   'checkbox',
   'core',
-  'sidenav'
+  'sidenav',
+  'toolbar',
+  'list'
 ];
 
 packages.forEach((packageName) => {

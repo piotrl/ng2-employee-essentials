@@ -1,5 +1,20 @@
-<h1>{{ title }}</h1>
-<a [routerLink]="['/']">Dashboard</a>
-<a [routerLink]="['/employees']">Employees</a>
+<div layout="column" height="500px">
+    <md-sidenav-layout>
+        <md-sidenav #left [opened]="true" mode="side"
+        class="side-nav">
+            <md-toolbar>{{ title }}</md-toolbar>
 
-<router-outlet></router-outlet>
+            <md-list>
+                <md-list-item>
+                    <a [routerLink]="['/']">Dashboard</a>
+                </md-list-item>
+                <md-list-item [routerLink]="['/employees']" md-ink="">
+                        Employees
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content layout-padding>
+            <router-outlet></router-outlet>
+        </md-content>
+    </md-sidenav-layout>
+</div>

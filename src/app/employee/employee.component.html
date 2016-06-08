@@ -41,13 +41,13 @@
         <tbody>
         <tr *ngFor="let employee of employees$ | async">
             <td>
-                <i class="material-icons">remove_circle</i>
-                <i class="material-icons">edit</i>
+                <a href="#" (click)="delete(employee)"><i class="material-icons">remove_circle</i></a>
+                <a href="#" (click)="gotoDetail(employee)"><i class="material-icons">edit</i></a>
             </td>
             <td>{{ employee.id }}</td>
             <td class="md-text-cell">{{ employee.name }}</td>
             <td class="md-text-cell">{{ employee.age }}</td>
-            <td class="md-text-cell">{{ employee.salary | currency }}</td>
+            <td class="md-text-cell">{{ employee.salary | number }}</td>
             <td class="md-text-cell">{{ employee.city }}</td>
         </tr>
         </tbody>

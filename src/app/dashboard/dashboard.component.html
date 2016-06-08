@@ -1,22 +1,28 @@
 <md-toolbar>Dashboard</md-toolbar>
 <div class="grid grid-pad">
     <div *ngFor="let city of cities" class="col-1-4 text-center">
-        <h4 class="center-pill">{{city.name}}</h4>
+        <h4>{{city.name}}</h4>
         <div class="module employee">
             <h2>{{ city.employees.length }}</h2>
         </div>
         <div>
             <md-list layout-padding>
-                <md-subheader class="md-no-sticky">Srednia pensja: {{ avgSalary(city) | currency }}</md-subheader>
+                <md-subheader class="md-no-sticky">Avg salary: {{ avgSalary(city) | number }}</md-subheader>
                 <md-divider></md-divider>
                 <br />
-                <md-subheader class="md-no-sticky">Najlepsi pracownicy</md-subheader>
+                <md-subheader class="md-no-sticky">Average age: {{ avgAge(city) | number }}</md-subheader>
+                <md-divider></md-divider>
+                <br />
+                <md-subheader class="md-no-sticky"><strong>Top3 employees</strong></md-subheader>
+                <md-divider></md-divider>
+                <br />
                 <md-list-item class="md-2-line" *ngFor="let item of bestEmployees(city)">
                     <img src="./nobody.png" class="md-avatar"/>
                     <div class="md-list-item-text">
-                        <h3>{{ item.name }}</h3>
+                        <h4>{{ item.name }}</h4>
                         <p>Salary: {{ item.salary }}</p>
                     </div>
+                    <md-divider></md-divider>
                 </md-list-item>
             </md-list>
         </div>

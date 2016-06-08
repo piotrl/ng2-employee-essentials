@@ -58,9 +58,18 @@ export class DashboardComponent implements OnInit {
     if (!city.employees.length) {
       return 0;
     }
-
     let sum = 0;
     city.employees.forEach(e => sum += e.salary);
+
+    return sum / city.employees.length;
+  }
+
+  avgAge(city: City): number {
+    if (!city.employees.length) {
+      return 0;
+    }
+    let sum = 0;
+    city.employees.forEach(e => sum += e.age);
 
     return sum / city.employees.length;
   }

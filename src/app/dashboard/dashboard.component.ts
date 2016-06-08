@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     Promise.all([
       this.employeeService.getEmployees().toPromise(),
-      this.dashboardService.getCities().toPromise()
+      this.dashboardService.getCities()
     ]).then((data: any[]) => {
       console.log(data);
       const employees = data[0];

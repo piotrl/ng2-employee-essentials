@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import 'rxjs/Rx';
+import {Http} from "@angular/http";
+import "rxjs/Rx";
 import "rxjs/add/operator/toPromise";
-
 import {City} from "../shared/City";
 
 
@@ -14,8 +12,9 @@ export class DashboardService {
   constructor(private http: Http) {
   }
 
-  getCities(): Observable<City[]> {
+  getCities(): Promise<City[]> {
     return this.http.get(this.URL)
-      .map((res) => res.json().data);
+      .map((res) => res.json().data)
+      .toPromise();
   }
 }

@@ -42,6 +42,8 @@
             <th>ID</th>
             <th class="md-text-cell">Name</th>
             <th class="md-text-cell">Age</th>
+            <th class="md-text-cell">Salary</th>
+            <th class="md-text-cell">City</th>
         </tr>
         </thead>
         <tbody>
@@ -49,6 +51,8 @@
             <td>{{ employee.id }}</td>
             <td class="md-text-cell">{{ employee.name }}</td>
             <td class="md-text-cell">{{ employee.age }}</td>
+            <td class="md-text-cell">{{ employee.salary | currency }}</td>
+            <td class="md-text-cell">{{ employee.city }}</td>
         </tr>
         </tbody>
     </md-data-table>

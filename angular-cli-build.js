@@ -14,7 +14,9 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       '@angular2-material/**/*',
       'angular2-in-memory-web-api/*.js',
-      'ng2-material/**/*'
+      'ng2-material/**/*',
+      'ng2-bootstrap/**/*',
+      'moment/**/*'
     ]
   });
 };

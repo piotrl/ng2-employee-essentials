@@ -25,5 +25,4 @@ bootstrap(AppComponent, [
     MD_TOOLBAR_DIRECTIVES,
     provide(XHRBackend, {useClass: InMemoryBackendService}), // in-mem server
     provide(SEED_DATA, {useClass: InMemoryDataService})     // in-mem server app.data
-
 ]);

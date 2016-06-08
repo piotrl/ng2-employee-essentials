@@ -9,6 +9,7 @@ import {EmployeeService} from "./employee/employee.service";
 import {EmployeesComponent} from "./employee/employee.component";
 import {EmployeeDetailComponent} from "./employee/detail/employee-detail.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Routes([
     {path: '/', component: DashboardComponent},
@@ -24,7 +25,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
         MD_SIDENAV_DIRECTIVES,
         MD_LIST_DIRECTIVES,
         MD_TOOLBAR_DIRECTIVES,
-        MD_BUTTON_DIRECTIVES
+        MD_BUTTON_DIRECTIVES,
+        AlertComponent, DATEPICKER_DIRECTIVES
     ],
     providers: [ROUTER_PROVIDERS, EmployeeService]
 })

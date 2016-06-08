@@ -5,13 +5,17 @@
 const map: any = {
   '@angular2-material': 'vendor/@angular2-material',
   'ng2-material': 'vendor/ng2-material',
-  'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api'
+  'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api',
+  'ng2-bootstrap': 'vendor/ng2-bootstrap',
+  'moment': 'vendor/moment'
 };
 
 /** User packages configuration. */
 const packages: string[]  = [
   'ng2-material',
-  'angular2-in-memory-web-api'
+  'angular2-in-memory-web-api',
+  'ng2-bootstrap',
+  'moment'
 ];
 
 const materialPkgs: string[] = [
@@ -27,6 +31,7 @@ const materialPkgs: string[] = [
 packages.forEach((packageName) => {
   packages[packageName] = {main: 'index'}
 });
+packages['moment'] = {main: 'moment'}
 
 
 materialPkgs.forEach((pkg) => {

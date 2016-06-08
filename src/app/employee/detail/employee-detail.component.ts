@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RouteSegment, OnActivate} from "@angular/router";
 
-import {Employee} from '../Employee';
+import {Employee} from '../../shared/Employee';
 import {EmployeeService} from "../employee.service";
 
 @Component({

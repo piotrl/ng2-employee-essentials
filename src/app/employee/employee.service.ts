@@ -4,7 +4,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx';
 import "rxjs/add/operator/toPromise";
 
-import {Employee} from "./Employee";
+import {Employee} from "../shared/Employee";
 
 
 @Injectable()

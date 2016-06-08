@@ -1,36 +1,55 @@
-<md-toolbar>Our employees</md-toolbar>
-
-<button (click)="addEmployee()">Add New employee</button>
+<md-toolbar>Our employees
+    <div class="pull-right">
+        <i class="material-icons">add</i> <button (click)="addEmployee()">Add employee</button>
+    </div>
+</md-toolbar>
 <div *ngIf="selectedEmployee">
     <h2>
         {{selectedEmployee.name | uppercase}} is my employee
     </h2>
     <button (click)="gotoDetail(selectedEmployee)">View Details</button>
 </div>
-<md-dialog #alert>
-    Clicking the button will close this dialog
-    <md-dialog-actions ok="Got It"></md-dialog-actions>
-</md-dialog>
 
-<button md-button (click)="alert.show()">Open Dialog</button>
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" (click)="smModal.show()">
+    <i class="material-icons">add</i>
+    Add New employee
+</button>
 
+<div bsModal #smModal="bs-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="smModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add employee</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr/>
 <input type="text" [ngFormControl]="term"/>
 
 <div>
-<md-data-table layout-fill>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th class="md-text-cell">Name</th>
-        <th class="md-text-cell">Age</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let employee of employees$ | async">
-        <td>{{ employee.id }}</td>
-        <td class="md-text-cell">{{ employee.name }}</td>
-        <td class="md-text-cell">{{ employee.age }}</td>
-    </tr>
-    </tbody>
-</md-data-table>
+    <md-data-table layout-fill>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th class="md-text-cell">Name</th>
+            <th class="md-text-cell">Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employees$ | async">
+            <td>{{ employee.id }}</td>
+            <td class="md-text-cell">{{ employee.name }}</td>
+            <td class="md-text-cell">{{ employee.age }}</td>
+        </tr>
+        </tbody>
+    </md-data-table>
 </div>

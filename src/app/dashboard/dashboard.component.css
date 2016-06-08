@@ -31,13 +31,13 @@ h3 {
 }
 
 .module {
-    padding: 20px;
+    margin: 20px;
     text-align: center;
     color: #eee;
-    max-height: 120px;
-    min-width: 120px;
-    background-color: #607D8B;
-    border-radius: 2px;
+    height: 120px;
+    width: 120px;
+    background-color: #039be5;
+    border-radius: 50%;
 }
 
 h4 {
@@ -45,9 +45,8 @@ h4 {
 }
 
 .module:hover {
-    background-color: #EEE;
+    background-color: #51a2e5;
     cursor: pointer;
-    color: #607d8b;
 }
 
 .grid-pad {

@@ -1,8 +1,9 @@
 <md-toolbar>Dashboard</md-toolbar>
 <div class="grid grid-pad">
-    <div *ngFor="let employee of topEmployees" (click)="gotoDetail(employee)" class="col-1-4">
+    <div *ngFor="let city of cities" class="col-1-4">
+        <h4 class="center-pill">{{city.name}}</h4>
         <div class="module employee">
-            <h4>{{employee.name}}</h4>
+            <h2>{{ city.employeesAmount }}</h2>
         </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 <div *ngIf="employee">
 
-    <form #employeForm="ngForm">
-        <h2 *ngIf="employee.name">{{ employee.name }} details!</h2>
+    <form #employeeForm="ngForm">
         <div *ngIf="employee.id"><label>id: </label>{{employee.id}}</div>
         <div>
             <label>name: </label>
@@ -26,12 +25,11 @@
         <div>
             <label>city: </label>
             <select required [(ngModel)]="employee.city">
-                <option *ngFor="let p of cities" [value]="p.id">{{p.name}}</option>
+                <option *ngFor="let c of cities" [value]="c.id">{{c.name}}</option>
             </select>
-
         </div>
 
         <button (click)="goBack()">Back</button>
-        <button (click)="save()" [disabled]="!employeForm.form.valid">Save</button>
+        <button (click)="save()" [disabled]="!employeeForm.form.valid">Save</button>
     </form>
 </div>

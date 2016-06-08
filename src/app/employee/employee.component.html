@@ -1,20 +1,11 @@
-<md-toolbar>Our employees
+<div style="overflow: hidden">
+    <h3 class="pull-left">Our employees</h3>
     <div class="pull-right">
-        <i class="material-icons">add</i> <button (click)="addEmployee()">Add employee</button>
+        <button type="button" class="btn btn-primary" (click)="addEmployee()">
+            <i class="material-icons">add</i>
+        </button>
     </div>
-</md-toolbar>
-<div *ngIf="selectedEmployee">
-    <h2>
-        {{selectedEmployee.name | uppercase}} is my employee
-    </h2>
-    <button (click)="gotoDetail(selectedEmployee)">View Details</button>
 </div>
-
-<!-- Small modal -->
-<button type="button" class="btn btn-primary" (click)="smModal.show()">
-    <i class="material-icons">add</i>
-    Add New employee
-</button>
 
 <div bsModal #smModal="bs-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -39,6 +30,7 @@
     <md-data-table layout-fill>
         <thead>
         <tr>
+            <th>Actions</th>
             <th>ID</th>
             <th class="md-text-cell">Name</th>
             <th class="md-text-cell">Age</th>
@@ -48,6 +40,10 @@
         </thead>
         <tbody>
         <tr *ngFor="let employee of employees$ | async">
+            <td>
+                <i class="material-icons">remove_circle</i>
+                <i class="material-icons">edit</i>
+            </td>
             <td>{{ employee.id }}</td>
             <td class="md-text-cell">{{ employee.name }}</td>
             <td class="md-text-cell">{{ employee.age }}</td>

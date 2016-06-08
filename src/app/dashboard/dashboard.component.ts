@@ -40,16 +40,28 @@ export class DashboardComponent implements OnInit {
       const cities = data[1];
 
       this.cities = cities.map(c => {
-        c.employeesAmount = employees.filter(e => {
+        c.employees = employees.filter(e => {
           return c.id === e.city
-        }).length;
-        console.log(c.employeesAmount);
+        });
         return c;
       });
     });
   }
 
-  gotoDetail(employee: Employee) {
-    this.router.navigateByUrl(`/employee/${employee.id}`);
+  bestEmployees(city: City): Employee[] {
+    return city.employees
+      .sort((c1, c2) => c2.salary - c1.salary)
+      .slice(0, 3);
+  }
+
+  avgSalary(city: City): number {
+    if (!city.employees.length) {
+      return 0;
+    }
+
+    let sum = 0;
+    city.employees.forEach(e => sum += e.salary);
+
+    return sum / city.employees.length;
   }
 }

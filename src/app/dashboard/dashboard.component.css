@@ -31,9 +31,10 @@ h3 {
 }
 
 .module {
-    margin: 20px;
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
-    color: #eee;
+    color: #FFF;
     height: 120px;
     width: 120px;
     background-color: #039be5;

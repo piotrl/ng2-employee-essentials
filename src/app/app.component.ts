@@ -3,6 +3,7 @@ import {Router, Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "@angular/rout
 import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
+import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
 
 import {EmployeeService} from "./employee/employee.service";
 import {EmployeesComponent} from "./employee/employee.component";
@@ -22,7 +23,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
         ROUTER_DIRECTIVES,
         MD_SIDENAV_DIRECTIVES,
         MD_LIST_DIRECTIVES,
-        MD_TOOLBAR_DIRECTIVES
+        MD_TOOLBAR_DIRECTIVES,
+        MD_BUTTON_DIRECTIVES
     ],
     providers: [ROUTER_PROVIDERS, EmployeeService]
 })
@@ -32,6 +34,6 @@ export class AppComponent implements OnInit {
     constructor(private router: Router) {}
 
     ngOnInit() {
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
     }
 }

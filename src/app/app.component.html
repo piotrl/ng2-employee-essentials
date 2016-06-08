@@ -6,14 +6,14 @@
 
             <md-list>
                 <md-list-item>
-                    <a [routerLink]="['/']">Dashboard</a>
+                    <md-button [routerLink]="['/']">Dashboard</md-button>
                 </md-list-item>
-                <md-list-item [routerLink]="['/employees']" md-ink="">
-                        Employees
+                <md-list-item>
+                    <md-button [routerLink]="['/employees']">Employees</md-button>
                 </md-list-item>
             </md-list>
         </md-sidenav>
-        <md-content layout-padding>
+        <md-content>
             <router-outlet></router-outlet>
         </md-content>
     </md-sidenav-layout>

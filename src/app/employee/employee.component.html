@@ -1,4 +1,19 @@
 <md-toolbar>Our employees</md-toolbar>
+
+<button (click)="addEmployee()">Add New employee</button>
+<div *ngIf="selectedEmployee">
+    <h2>
+        {{selectedEmployee.name | uppercase}} is my employee
+    </h2>
+    <button (click)="gotoDetail(selectedEmployee)">View Details</button>
+</div>
+<md-dialog #alert>
+    Clicking the button will close this dialog
+    <md-dialog-actions ok="Got It"></md-dialog-actions>
+</md-dialog>
+
+<button md-button (click)="alert.show()">Open Dialog</button>
+
 <input type="text" [ngFormControl]="term"/>
 
 <div>
@@ -18,20 +33,4 @@
     </tr>
     </tbody>
 </md-data-table>
-</div>
-<!--<ul class="employees">-->
-    <!--<li *ngFor="let employee of employees$ | async" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">-->
-    <!--<span class="employee-element">-->
-      <!--<span class="badge">{{employee.id}}</span> {{employee.name}}-->
-    <!--</span>-->
-        <!--<button class="delete-button" (click)="delete(employee, $event)">Delete</button>-->
-    <!--</li>-->
-<!--</ul>-->
-
-<button (click)="addEmployee()">Add New employee</button>
-<div *ngIf="selectedEmployee">
-    <h2>
-        {{selectedEmployee.name | uppercase}} is my employee
-    </h2>
-    <button (click)="gotoDetail(selectedEmployee)">View Details</button>
 </div>

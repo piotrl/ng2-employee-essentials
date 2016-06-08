@@ -5,6 +5,11 @@ import {Router} from "@angular/router";
 import {Employee} from "./Employee";
 import {EmployeeService} from "./employee.service";
 import {EmployeeDetailComponent} from "./detail/employee-detail.component";
+
+import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
+import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
+import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
+
 import "rxjs/Rx";
 import "rxjs/add/operator/share";
 
@@ -12,7 +17,14 @@ import "rxjs/add/operator/share";
     selector: 'employees-list',
     templateUrl: 'app/employee/employee.component.html',
     styleUrls: ['app/employee/employee.component.css'],
-    directives: [EmployeeDetailComponent]
+    directives: [
+        EmployeeDetailComponent,
+
+        // crap that I can't inherit
+        MD_LIST_DIRECTIVES,
+        MD_TOOLBAR_DIRECTIVES,
+        MD_BUTTON_DIRECTIVES
+    ]
 })
 export class EmployeesComponent implements OnInit {
     term = new Control();
@@ -30,6 +42,7 @@ export class EmployeesComponent implements OnInit {
             .debounceTime(400)
             .distinctUntilChanged()
             .switchMap(term => this.employeeService.search(term));
+
     }
 
     addEmployee() {

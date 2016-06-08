@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit {
       this.employeeService.getEmployees().toPromise(),
       this.dashboardService.getCities()
     ]).then((data: any[]) => {
-      console.log(data);
       const employees = data[0];
       const cities = data[1];
 

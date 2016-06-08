@@ -64,8 +64,7 @@ export class EmployeesComponent implements OnInit {
       .getEmployees();
   }
 
-  delete(employee: Employee, event: any) {
-    event.stopPropagation();
+  delete(employee: Employee) {
     this.employeeService
       .delete(employee)
       .then(res => {

@@ -24,7 +24,7 @@
 </div>
 
 <hr/>
-<input type="text" [ngFormControl]="term"/>
+<input placeholder="Filter by name" type="text" [ngFormControl]="term"/>
 
 <div>
     <md-data-table layout-fill>
@@ -41,8 +41,8 @@
         <tbody>
         <tr *ngFor="let employee of employees$ | async">
             <td>
-                <a href="#" (click)="delete(employee)"><i class="material-icons">remove_circle</i></a>
-                <a href="#" (click)="gotoDetail(employee)"><i class="material-icons">edit</i></a>
+                <button (click)="delete(employee)"><i class="material-icons">remove_circle</i></button>
+                <button (click)="gotoDetail(employee)"><i class="material-icons">edit</i></button>
             </td>
             <td>{{ employee.id }}</td>
             <td class="md-text-cell">{{ employee.name }}</td>

@@ -37,13 +37,16 @@ export class DashboardComponent implements OnInit {
     ]).then((data: any[]) => {
       const employees = data[0];
       const cities = data[1];
+      this.cities = this.buildCity(cities, employees);
+    });
+  }
 
-      this.cities = cities.map(c => {
-        c.employees = employees.filter(e => {
-          return c.id === e.city
-        });
-        return c;
+  private buildCity(cities: City[], employees: Employee[]): City[] {
+    return cities.map(c => {
+      c.employees = employees.filter(e => {
+        return c.id === e.city
       });
+      return c;
     });
   }
 
